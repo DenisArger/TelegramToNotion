@@ -12,6 +12,31 @@ const bot = new TelegramBot(telegramBotToken, { polling: true });
 
 const notion = new Client({ auth: notionApiKey });
 
+
+// Создаем инлайн-клавиатуру с кнопкой "START"
+const inlineKeyboard = {
+  inline_keyboard: [
+    [
+      {
+        text: "START",
+        callback_data: "start_button", // Данные, которые будут отправлены при нажатии кнопки
+      },
+    ],
+  ],
+};
+
+// Обработка нажатия на кнопку "START"
+bot.on("callback_query", (query) => {
+  if (query.data === "start_button") {
+    const chatId = query.message.chat.id;
+
+    // Выполняем действие при нажатии кнопки "START"
+    bot.sendMessage(chatId, "Вы нажали кнопку 'START'");
+  }
+});
+
+
+
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
 
