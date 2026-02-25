@@ -1,56 +1,67 @@
-﻿# TelegramToNotion
+# TelegramToNotion
 
-Бот для Telegram, который сохраняет сообщения в базу данных Notion. Проект использует Telegram Bot API и официальный Notion SDK, обрабатывает команды в чате и пишет записи в заданную базу.
-
-## Возможности
-- Приветствие по команде `/start`.
-- Кнопка `START` в inline-клавиатуре.
-- Команда `/addrecord <текст>` для добавления записи в Notion.
-- Автоматическая запись даты и автора (username) в поля базы.
-
-## Как это работает
-1. Бот запускается в режиме polling.
-2. Пользователь отправляет `/addrecord ...`.
-3. Бот создаёт страницу в Notion Database с полями:
-   - `ID` (Title) — username пользователя.
-   - `Name` (Rich text) — текст записи.
-   - `Status` (Checkbox) — статус записи (по умолчанию `false`).
-   - `Date` (Date) — дата создания (YYYY-MM-DD).
-
-## Требования
-- Node.js (рекомендуется 18+).
-- Telegram Bot Token.
-- Notion API Key.
-- Notion Database ID с нужной схемой полей.
-
-## Установка
+## English
+## Problem
+Teams often capture ideas/tasks in Telegram, but lose structure unless records are synchronized to a workspace database.
+## Solution
+TelegramToNotion bot receives commands and writes structured entries into a Notion database.
+## Tech Stack
+- Node.js
+- Telegram Bot API
+- Notion SDK
+- dotenv
+## Architecture
+```text
+index.js
+package.json
+netlify.toml
+```
+```mermaid
+flowchart TD
+  A[Telegram User] --> B[Bot command handler]
+  B --> C[Notion client]
+  C --> D[Notion database]
+```
+## Features
+- `/start` onboarding
+- `/addrecord <text>` command
+- Record creation in Notion with author/date fields
+## How to Run
 ```bash
 npm install
-```
-
-## Настройка окружения
-Создайте файл `.env` в корне проекта:
-```env
-TELEGRAM_BOT_TOKEN=your_telegram_bot_token
-NOTION_API_KEY=your_notion_api_key
-NOTION_DATABASE_ID=your_notion_database_id
-```
-
-## Запуск
-```bash
+cp .env.example .env
 npm start
 ```
 
-## Использование
-- `/start` — приветствие.
-- Нажатие кнопки `START` — подтверждение действия.
-- `/addrecord <текст>` — добавляет запись в Notion.
-
-## Структура проекта
-- `index.js` — основной файл бота и логика интеграции с Notion.
-- `package.json` — зависимости и скрипты.
-- `netlify.toml` — шаблон конфигурации (не используется в текущем запуске).
-
-## Примечания
-- В `package.json` поле `build` пустое — сборка не требуется.
-- Файл `netlify.toml` содержит пример и может быть удалён или адаптирован при деплое.
+## Русский
+## Проблема
+Идеи и задачи из Telegram теряют структуру, если не синхронизируются в базу знаний.
+## Решение
+Бот TelegramToNotion принимает команды и создает структурированные записи в Notion Database.
+## Стек
+- Node.js
+- Telegram Bot API
+- Notion SDK
+- dotenv
+## Архитектура
+```text
+index.js
+package.json
+netlify.toml
+```
+```mermaid
+flowchart TD
+  A[Пользователь Telegram] --> B[Обработчик команд]
+  B --> C[Клиент Notion]
+  C --> D[База Notion]
+```
+## Возможности
+- Онбординг через `/start`
+- Команда `/addrecord <text>`
+- Создание записей в Notion с автором и датой
+## Как запустить
+```bash
+npm install
+cp .env.example .env
+npm start
+```
