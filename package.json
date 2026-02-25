@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "build": ""
+    "build": "",
+    "lint": "find . -name '*.js' -not -path './node_modules/*' -print0 | xargs -0 -n1 node --check",
+    "test": "node -e \"console.log('test: no automated tests yet')\""
   },
   "license": "MIT",
   "dependencies": {
