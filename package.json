@@ -7,7 +7,7 @@
     "start": "node index.js",
     "build": "",
     "lint": "find . -name '*.js' -not -path './node_modules/*' -print0 | xargs -0 -n1 node --check",
-    "test": "node --test"
+    "test": "node --test test/**/*.test.*"
   },
   "license": "MIT",
   "dependencies": {
